@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Micah Fletcher.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -112,6 +112,26 @@ def problem2a(circle, rectangle, window):
     #    TIME ESTIMATE:   10 to 15 minutes.
     # -------------------------------------------------------------------------
 
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    start = rectangle.get_upper_right_corner()
+    end = rectangle.get_lower_left_corner()
+    line = rg.Line(start, end)
+    line.color = 'black'
+    line.arrow = 'last'
+
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
+
+
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
     print()
@@ -182,6 +202,27 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # -------------------------------------------------------------------------
+    rect.attach_to(win)
+
+    x = rect._upper_right_corner.x
+    y = rect._upper_right_corner.y
+    x1 = rect._lower_left_corner.x
+    y1 = rect._lower_left_corner.y
+
+
+    for k in range(n):
+        corn1 = rg.Point(x, y)
+        corn2 = rg.Point(x1, y1)
+
+        rect = rg.Rectangle(corn1, corn2)
+
+        rect.attach_to(win)
+        win.render()
+
+        x = x + delta
+        y = y - delta
+        x1 = x1 - delta
+        y1 = y1 + delta
 
 
 # -----------------------------------------------------------------------------
